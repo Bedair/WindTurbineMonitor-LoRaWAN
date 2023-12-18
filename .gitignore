@@ -1,0 +1,6 @@
+*.d
+*.o
+*.su
+*.cyclo
+
+LoRaWAN_End_Node/STM32CubeIDE/Debug/
