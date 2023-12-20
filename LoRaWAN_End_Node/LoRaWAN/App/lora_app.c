@@ -94,7 +94,7 @@ static const char *slotStrings[] = { "1", "2", "C", "C_MC", "P", "P_MC" };
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 
-#define USERAPP_PERIOD_TIME 		100
+#define USERAPP_PERIOD_TIME 		500
 
 /* USER CODE END PM */
 

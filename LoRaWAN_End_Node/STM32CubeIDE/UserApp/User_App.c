@@ -18,6 +18,9 @@
 #include "sys_app.h"
 #include "utilities_def.h"
 
+
+#include "App_Vibration.h"
+
 /**********************************************************************
 *                          Global Variables                           *
 **********************************************************************/
@@ -48,6 +51,7 @@
 void UserApp_Init(void)
 {
     APP_LOG(TS_ON, VLEVEL_M, " UserAppInit\r\n");
+    App_Vibration_Init();
 }
 
 
@@ -61,6 +65,8 @@ void UserApp_Init(void)
 void UserApp_Mainfunction(void)
 {
     APP_LOG(TS_ON, VLEVEL_H, " UserApp_MainFunction\r\n");
+
+    App_Vibration_Get_Vibration_Level();
 }
 
 
