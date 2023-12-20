@@ -84,6 +84,7 @@
 "./Middlewares/SubGHz_Phy/radio.o"
 "./Middlewares/SubGHz_Phy/radio_driver.o"
 "./Middlewares/SubGHz_Phy/radio_fw.o"
+"./UserApp/User_App.o"
 "./Utilities/stm32_adv_trace.o"
 "./Utilities/stm32_lpm.o"
 "./Utilities/stm32_mem.o"

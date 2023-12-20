@@ -31,5 +31,6 @@ Drivers/CMSIS \
 Drivers/STM32WLxx_HAL_Driver \
 Middlewares/LoRaWAN \
 Middlewares/SubGHz_Phy \
+UserApp \
 Utilities \
 

@@ -10,6 +10,7 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include Utilities/subdir.mk
+-include UserApp/subdir.mk
 -include Middlewares/SubGHz_Phy/subdir.mk
 -include Middlewares/LoRaWAN/subdir.mk
 -include Drivers/STM32WLxx_HAL_Driver/subdir.mk

@@ -36,7 +36,7 @@
 #include "flash_if.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "User_App.h"
 /* USER CODE END Includes */
 
 /* External variables ---------------------------------------------------------*/
@@ -93,6 +93,8 @@ static const char *slotStrings[] = { "1", "2", "C", "C_MC", "P", "P_MC" };
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
+
+#define USERAPP_PERIOD_TIME 		100
 
 /* USER CODE END PM */
 
@@ -234,6 +236,9 @@ static void OnRxTimerLedEvent(void *context);
   */
 static void OnJoinTimerLedEvent(void *context);
 
+
+static void UserApp_TimerEvent(void *context);
+
 /* USER CODE END PFP */
 
 /* Private variables ---------------------------------------------------------*/
@@ -338,6 +343,9 @@ static UTIL_TIMER_Object_t RxLedTimer;
   */
 static UTIL_TIMER_Object_t JoinLedTimer;
 
+
+static UTIL_TIMER_Object_t UserAppTimer;
+
 /* USER CODE END PV */
 
 /* Exported functions ---------------------------------------------------------*/
@@ -435,6 +443,10 @@ void LoRaWAN_Init(void)
 
   /* USER CODE BEGIN LoRaWAN_Init_Last */
 
+  UTIL_TIMER_Create(&UserAppTimer, USERAPP_PERIOD_TIME, UTIL_TIMER_PERIODIC, UserApp_TimerEvent, NULL);
+  UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_UserAppEvent), UTIL_SEQ_RFU, UserApp_Mainfunction);
+  UTIL_TIMER_Start(&UserAppTimer);
+  
   /* USER CODE END LoRaWAN_Init_Last */
 }
 
@@ -466,7 +478,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
 /* Private functions ---------------------------------------------------------*/
 /* USER CODE BEGIN PrFD */
+static void UserApp_TimerEvent(void *context)
+{
+  UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_UserAppEvent), CFG_SEQ_Prio_0);
 
+  /*Wait for next tx slot*/
+  UTIL_TIMER_Start(&UserAppTimer);
+}
 /* USER CODE END PrFD */
 
 static void OnRxData(LmHandlerAppData_t *appData, LmHandlerRxParams_t *params)

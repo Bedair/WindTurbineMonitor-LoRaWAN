@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "user_app.h": "c",
+        "platform.h": "c",
+        "lora_info.h": "c"
+    }
+}
