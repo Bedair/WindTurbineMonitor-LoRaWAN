@@ -16,6 +16,15 @@
 
 
 /*
+* Funcation Name : UserApp_Init
+* Description    : Init Function for the User Application SW
+* Parameters     : NA
+* Return         : NA
+*/
+void UserApp_Init(void);
+
+
+/*
 * Funcation Name : UserApp_Mainfunction
 * Description    : Main function for the User Application SW
 * Parameters     : NA

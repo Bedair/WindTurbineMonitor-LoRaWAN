@@ -443,10 +443,12 @@ void LoRaWAN_Init(void)
 
   /* USER CODE BEGIN LoRaWAN_Init_Last */
 
+  UserApp_Init();
+
   UTIL_TIMER_Create(&UserAppTimer, USERAPP_PERIOD_TIME, UTIL_TIMER_PERIODIC, UserApp_TimerEvent, NULL);
   UTIL_SEQ_RegTask((1 << CFG_SEQ_Task_UserAppEvent), UTIL_SEQ_RFU, UserApp_Mainfunction);
   UTIL_TIMER_Start(&UserAppTimer);
-  
+
   /* USER CODE END LoRaWAN_Init_Last */
 }
 
