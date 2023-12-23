@@ -84,10 +84,10 @@ void App_Vibration_Init(void)
 * Parameters     : NA
 * Return         : Vibration level
 */
-Vibration_Level_T App_Vibration_Get_Vibration_Level(void)
+Vibration_State_T App_Vibration_Get_Vibration_Level(void)
 {
     Accel_Data_T Accel_Temp; 
-    Vibration_Level_T returnValue = NO_VIBRATION;
+    Vibration_State_T returnValue = NO_VIBRATION;
     uint16_t Difference_Sum = 0;
 
     /* Read the Current Accelerometer Values */
@@ -104,18 +104,10 @@ Vibration_Level_T App_Vibration_Get_Vibration_Level(void)
 
 
     /* Select the corrosponding vibration level */
-    if (Difference_Sum > BIG_VIBRATION_THRESHOLD)
+    if (Difference_Sum > VIBRATION_THRESHOLD)
     {
-        returnValue = BIG_VIBRATION;
+        returnValue = VIBRATION;
     }
-    else if (Difference_Sum > MEDIUM_VIBRATION_THRESHOLD)
-    {
-        returnValue = MEDIUM_VIBRATION;
-    } 
-    else if (Difference_Sum > SMALL_VIBRATION_THRESHOLD)
-    {
-        returnValue = SMALL_VIBRATION;
-    } 
     else
     {
         returnValue = NO_VIBRATION;

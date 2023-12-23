@@ -15,17 +15,14 @@
 
 #include "stm32wlxx_hal.h"
 
-#define SMALL_VIBRATION_THRESHOLD       (20)
-#define MEDIUM_VIBRATION_THRESHOLD      (60)
-#define BIG_VIBRATION_THRESHOLD         (90)
+#define VIBRATION_THRESHOLD       (30)
+
 
 typedef enum
 {
     NO_VIBRATION,
-    SMALL_VIBRATION,
-    MEDIUM_VIBRATION,
-    BIG_VIBRATION
-}Vibration_Level_T;
+    VIBRATION
+}Vibration_State_T;
 
 
 
@@ -44,7 +41,7 @@ void App_Vibration_Init(void);
 * Parameters     : NA
 * Return         : Vibration level
 */
-Vibration_Level_T App_Vibration_Get_Vibration_Level(void);
+Vibration_State_T App_Vibration_Get_Vibration_Level(void);
                           
 
 #endif
