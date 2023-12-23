@@ -29,7 +29,7 @@
 /**********************************************************************
 *                          Local Variables                           *
 **********************************************************************/
-
+static Vibration_State_T VibrationState = NO_VIBRATION;
 
 /**********************************************************************
 *                           Local Functions                           *
@@ -66,7 +66,23 @@ void UserApp_Mainfunction(void)
 {
     APP_LOG(TS_ON, VLEVEL_H, " UserApp_MainFunction\r\n");
 
-    App_Vibration_Get_Vibration_Level();
+    if (App_Vibration_Get_Vibration_Level())
+    {
+        VibrationState = VIBRATION;
+    }
+}
+
+
+Vibration_State_T UserApp_Get_Vibration_State(void)
+{
+    return VibrationState;;
+}
+
+
+
+void UserApp_Reset_Vibration_State(void)
+{
+    VibrationState = NO_VIBRATION;
 }
 
 

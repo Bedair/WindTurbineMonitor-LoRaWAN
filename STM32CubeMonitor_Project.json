@@ -1,0 +1,201 @@
+[
+    {
+        "id": "1e1c18cd2a8f5ef2",
+        "type": "tab",
+        "label": "WindTurbine_State",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3d6b43f59b208b62",
+        "type": "websocket in",
+        "z": "1e1c18cd2a8f5ef2",
+        "name": "Loriot Link",
+        "server": "",
+        "client": "6135f6d29f51c8bf",
+        "x": 180,
+        "y": 280,
+        "wires": [
+            [
+                "29470678bcb15a2c"
+            ]
+        ]
+    },
+    {
+        "id": "a9b6050f27ba8239",
+        "type": "function",
+        "z": "1e1c18cd2a8f5ef2",
+        "name": "Parser",
+        "func": "\nvar Temperature = { payload: parseInt(\"0x\" + msg.payload.data.substring(0, 2)) };\nvar VibrationState = { payload: parseInt(\"0x\" + msg.payload.data.substring(2, 4)) };\n\nreturn [Temperature, VibrationState];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 280,
+        "wires": [
+            [
+                "68a0ce3774b6dcc2",
+                "fbca26a7a357ec65"
+            ],
+            [
+                "78e77642735635c5",
+                "36586b3b9b452bea"
+            ]
+        ]
+    },
+    {
+        "id": "fbca26a7a357ec65",
+        "type": "ui_gauge",
+        "z": "1e1c18cd2a8f5ef2",
+        "name": "",
+        "group": "f9c34dde.1e2f4",
+        "order": 0,
+        "width": "7",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 810,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "36586b3b9b452bea",
+        "type": "ui_led",
+        "z": "1e1c18cd2a8f5ef2",
+        "order": 1,
+        "group": "f9c34dde.1e2f4",
+        "width": "2",
+        "height": "2",
+        "label": "Vibration State",
+        "labelPlacement": "left",
+        "labelAlignment": "center",
+        "colorForValue": [
+            {
+                "color": "#008000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#ff0000",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 790,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "29470678bcb15a2c",
+        "type": "json",
+        "z": "1e1c18cd2a8f5ef2",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 390,
+        "y": 280,
+        "wires": [
+            [
+                "a9b6050f27ba8239",
+                "0c41ac44f42a972c"
+            ]
+        ]
+    },
+    {
+        "id": "68a0ce3774b6dcc2",
+        "type": "debug",
+        "z": "1e1c18cd2a8f5ef2",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "78e77642735635c5",
+        "type": "debug",
+        "z": "1e1c18cd2a8f5ef2",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "0c41ac44f42a972c",
+        "type": "debug",
+        "z": "1e1c18cd2a8f5ef2",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "6135f6d29f51c8bf",
+        "type": "websocket-client",
+        "path": "wss://eu1.loriot.io/app?token=vnor1wAAAA1ldTEubG9yaW90LmlvsqCUKwnhbiUDV-E4ptx01Q==",
+        "tls": "",
+        "wholemsg": "false",
+        "hb": "0",
+        "subprotocol": ""
+    },
+    {
+        "id": "f9c34dde.1e2f4",
+        "type": "ui_group",
+        "name": "Chart",
+        "tab": "17d09b07.741a55",
+        "order": 1,
+        "disp": true,
+        "width": 15,
+        "collapse": false
+    },
+    {
+        "id": "17d09b07.741a55",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

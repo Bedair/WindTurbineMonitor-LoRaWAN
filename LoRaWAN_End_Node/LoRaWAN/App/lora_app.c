@@ -596,19 +596,13 @@ static void SendTxData(void)
     AppData.Port = LORAWAN_USER_APP_PORT;
 
 
-    humidity    = (uint16_t)555;
-    temperature = (int16_t)MPU60x0_Get_Temperature();
-    pressure = (uint16_t)777;
 
-    AppData.Buffer[i++] = AppLedStateOn;
-    AppData.Buffer[i++] = (uint8_t)((pressure >> 8) & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)(pressure & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)(temperature & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)((humidity >> 8) & 0xFF);
-    AppData.Buffer[i++] = (uint8_t)(humidity & 0xFF);
+    AppData.Buffer[i++] = (uint8_t)MPU60x0_Get_Temperature();
+    AppData.Buffer[i++] = (uint8_t)UserApp_Get_Vibration_State();
 
     AppData.BufferSize = i;
 
+    UserApp_Reset_Vibration_State();
 
     if ((JoinLedTimer.IsRunning) && (LmHandlerJoinStatus() == LORAMAC_HANDLER_SET))
     {
