@@ -27,8 +27,8 @@
         "type": "function",
         "z": "1e1c18cd2a8f5ef2",
         "name": "Parser",
-        "func": "\nvar Temperature = { payload: parseInt(\"0x\" + msg.payload.data.substring(0, 2)) };\nvar VibrationState = { payload: parseInt(\"0x\" + msg.payload.data.substring(2, 4)) };\n\nreturn [Temperature, VibrationState];",
-        "outputs": 2,
+        "func": "\nvar Temperature = { payload: parseInt(\"0x\" + msg.payload.data.substring(0, 2)) };\nvar VibrationState = { payload: parseInt(\"0x\" + msg.payload.data.substring(2, 4)) };\nvar MotorRPM = { payload: parseInt(\"0x\" + msg.payload.data.substring(4, 6)) };\n\nreturn [Temperature, VibrationState, MotorRPM];",
+        "outputs": 3,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
@@ -38,12 +38,13 @@
         "y": 280,
         "wires": [
             [
-                "68a0ce3774b6dcc2",
                 "fbca26a7a357ec65"
             ],
             [
-                "78e77642735635c5",
                 "36586b3b9b452bea"
+            ],
+            [
+                "a27b161f8db3d662"
             ]
         ]
     },
@@ -118,57 +119,36 @@
         "y": 280,
         "wires": [
             [
-                "a9b6050f27ba8239",
-                "0c41ac44f42a972c"
+                "a9b6050f27ba8239"
             ]
         ]
     },
     {
-        "id": "68a0ce3774b6dcc2",
-        "type": "debug",
+        "id": "a27b161f8db3d662",
+        "type": "ui_gauge",
         "z": "1e1c18cd2a8f5ef2",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 740,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "78e77642735635c5",
-        "type": "debug",
-        "z": "1e1c18cd2a8f5ef2",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 760,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "0c41ac44f42a972c",
-        "type": "debug",
-        "z": "1e1c18cd2a8f5ef2",
-        "name": "debug 3",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 460,
-        "y": 460,
+        "name": "",
+        "group": "f9c34dde.1e2f4",
+        "order": 2,
+        "width": "7",
+        "height": "5",
+        "gtype": "gage",
+        "title": "MotorRPM",
+        "label": "RPM",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 810,
+        "y": 360,
         "wires": []
     },
     {

@@ -30,6 +30,7 @@
 *                          Local Variables                           *
 **********************************************************************/
 static Vibration_State_T VibrationState = NO_VIBRATION;
+static uint16_t MotorEncoder_Count = 0;
 
 /**********************************************************************
 *                           Local Functions                           *
@@ -83,6 +84,24 @@ Vibration_State_T UserApp_Get_Vibration_State(void)
 void UserApp_Reset_Vibration_State(void)
 {
     VibrationState = NO_VIBRATION;
+}
+
+
+void UserApp_Motor_Encoder_Event(void)
+{
+    MotorEncoder_Count++;
+}
+
+
+uint16_t UserApp_Get_Motor_Encoder_Counts(void)
+{
+    return MotorEncoder_Count;
+}
+
+
+void UserApp_Reset_Motor_Encoder_Counts(void)
+{
+    MotorEncoder_Count = 0;
 }
 
 

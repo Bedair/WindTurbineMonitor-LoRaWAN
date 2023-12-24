@@ -95,6 +95,7 @@ static const char *slotStrings[] = { "1", "2", "C", "C_MC", "P", "P_MC" };
 /* USER CODE BEGIN PM */
 
 #define USERAPP_PERIOD_TIME 		500
+#define SEND_DATA_EVENTS_PER_MINUTE (60000/APP_TX_DUTYCYCLE)
 
 /* USER CODE END PM */
 
@@ -471,6 +472,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     case  BUT3_Pin:
       UTIL_SEQ_SetTask((1 << CFG_SEQ_Task_LoRaStoreContextEvent), CFG_SEQ_Prio_0);
       break;
+    case  MOTOR_ENCODER_PIN:
+      UserApp_Motor_Encoder_Event();
+      break;
     default:
       break;
   }
@@ -599,10 +603,12 @@ static void SendTxData(void)
 
     AppData.Buffer[i++] = (uint8_t)MPU60x0_Get_Temperature();
     AppData.Buffer[i++] = (uint8_t)UserApp_Get_Vibration_State();
+    AppData.Buffer[i++] = (uint8_t)(UserApp_Get_Motor_Encoder_Counts() * SEND_DATA_EVENTS_PER_MINUTE/ MOTOR_COUNTS_PER_CYCLE);
 
     AppData.BufferSize = i;
 
     UserApp_Reset_Vibration_State();
+    UserApp_Reset_Motor_Encoder_Counts();
 
     if ((JoinLedTimer.IsRunning) && (LmHandlerJoinStatus() == LORAMAC_HANDLER_SET))
     {

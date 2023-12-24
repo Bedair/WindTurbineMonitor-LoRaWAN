@@ -15,6 +15,10 @@
 
 
 
+#define MOTOR_ENCODER_PIN       GPIO_PIN_5
+#define MOTOR_COUNTS_PER_CYCLE  (11)
+
+
 /*
 * Funcation Name : UserApp_Init
 * Description    : Init Function for the User Application SW
@@ -31,5 +35,8 @@ void UserApp_Init(void);
 * Return         : NA
 */
 void UserApp_Mainfunction(void);
+
+
+void UserApp_Motor_Encoder_Event(void);
 
 #endif
